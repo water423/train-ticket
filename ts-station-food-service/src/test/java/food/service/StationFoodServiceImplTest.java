@@ -2,9 +2,7 @@ package food.service;
 
 import edu.fudan.common.util.Response;
 import food.entity.StationFoodStore;
-import food.entity.TrainFood;
 import food.repository.StationFoodRepository;
-import food.repository.TrainFoodRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,8 +24,8 @@ public class StationFoodServiceImplTest {
     @Mock
     private StationFoodRepository stationFoodRepository;
 
-    @Mock
-    private TrainFoodRepository trainFoodRepository;
+//    @Mock
+//    private TrainFoodRepository trainFoodRepository;
 
     private HttpHeaders headers = new HttpHeaders();
 
@@ -53,22 +51,22 @@ public class StationFoodServiceImplTest {
         Assert.assertEquals(new Response<>(1, "Save Success", fs), result);
     }
 
-    @Test
-    public void testCreateTrainFood1() {
-        TrainFood tf = new TrainFood();
-        Mockito.when(trainFoodRepository.findById(Mockito.any(UUID.class))).thenReturn(tf);
-        TrainFood result = foodMapServiceImpl.createTrainFood(tf, headers);
-        Assert.assertEquals(tf, result);
-    }
-
-    @Test
-    public void testCreateTrainFood2() {
-        TrainFood tf = new TrainFood();
-        Mockito.when(trainFoodRepository.findById(Mockito.any(UUID.class))).thenReturn(null);
-        Mockito.when(trainFoodRepository.save(Mockito.any(TrainFood.class))).thenReturn(null);
-        TrainFood result = foodMapServiceImpl.createTrainFood(tf, headers);
-        Assert.assertEquals(tf, result);
-    }
+//    @Test
+//    public void testCreateTrainFood1() {
+//        TrainFood tf = new TrainFood();
+//        Mockito.when(trainFoodRepository.findById(Mockito.any(UUID.class))).thenReturn(tf);
+//        TrainFood result = foodMapServiceImpl.createTrainFood(tf, headers);
+//        Assert.assertEquals(tf, result);
+//    }
+//
+//    @Test
+//    public void testCreateTrainFood2() {
+//        TrainFood tf = new TrainFood();
+//        Mockito.when(trainFoodRepository.findById(Mockito.any(UUID.class))).thenReturn(null);
+//        Mockito.when(trainFoodRepository.save(Mockito.any(TrainFood.class))).thenReturn(null);
+//        TrainFood result = foodMapServiceImpl.createTrainFood(tf, headers);
+//        Assert.assertEquals(tf, result);
+//    }
 
     @Test
     public void testListFoodStores1() {
@@ -86,21 +84,21 @@ public class StationFoodServiceImplTest {
         Assert.assertEquals(new Response<>(0, "Food store is empty", null), result);
     }
 
-    @Test
-    public void testListTrainFood1() {
-        List<TrainFood> trainFoodList = new ArrayList<>();
-        trainFoodList.add(new TrainFood());
-        Mockito.when(trainFoodRepository.findAll()).thenReturn(trainFoodList);
-        Response result = foodMapServiceImpl.listTrainFood(headers);
-        Assert.assertEquals(new Response<>(1, "Success", trainFoodList), result);
-    }
-
-    @Test
-    public void testListTrainFood2() {
-        Mockito.when(trainFoodRepository.findAll()).thenReturn(null);
-        Response result = foodMapServiceImpl.listTrainFood(headers);
-        Assert.assertEquals(new Response<>(0, "No content", null), result);
-    }
+//    @Test
+//    public void testListTrainFood1() {
+//        List<TrainFood> trainFoodList = new ArrayList<>();
+//        trainFoodList.add(new TrainFood());
+//        Mockito.when(trainFoodRepository.findAll()).thenReturn(trainFoodList);
+//        Response result = foodMapServiceImpl.listTrainFood(headers);
+//        Assert.assertEquals(new Response<>(1, "Success", trainFoodList), result);
+//    }
+//
+//    @Test
+//    public void testListTrainFood2() {
+//        Mockito.when(trainFoodRepository.findAll()).thenReturn(null);
+//        Response result = foodMapServiceImpl.listTrainFood(headers);
+//        Assert.assertEquals(new Response<>(0, "No content", null), result);
+//    }
 
     @Test
     public void testListFoodStoresByStationId1() {
@@ -118,21 +116,21 @@ public class StationFoodServiceImplTest {
         Assert.assertEquals(new Response<>(0, "Food store is empty", null), result);
     }
 
-    @Test
-    public void testListTrainFoodByTripId1() {
-        List<TrainFood> trainFoodList = new ArrayList<>();
-        trainFoodList.add(new TrainFood());
-        Mockito.when(trainFoodRepository.findByTripId(Mockito.anyString())).thenReturn(trainFoodList);
-        Response result = foodMapServiceImpl.listTrainFoodByTripId("trip_id", headers);
-        Assert.assertEquals(new Response<>(1, "Success", trainFoodList), result);
-    }
-
-    @Test
-    public void testListTrainFoodByTripId2() {
-        Mockito.when(trainFoodRepository.findByTripId(Mockito.anyString())).thenReturn(null);
-        Response result = foodMapServiceImpl.listTrainFoodByTripId("trip_id", headers);
-        Assert.assertEquals(new Response<>(0, "No content", null), result);
-    }
+//    @Test
+//    public void testListTrainFoodByTripId1() {
+//        List<TrainFood> trainFoodList = new ArrayList<>();
+//        trainFoodList.add(new TrainFood());
+//        Mockito.when(trainFoodRepository.findByTripId(Mockito.anyString())).thenReturn(trainFoodList);
+//        Response result = foodMapServiceImpl.listTrainFoodByTripId("trip_id", headers);
+//        Assert.assertEquals(new Response<>(1, "Success", trainFoodList), result);
+//    }
+//
+//    @Test
+//    public void testListTrainFoodByTripId2() {
+//        Mockito.when(trainFoodRepository.findByTripId(Mockito.anyString())).thenReturn(null);
+//        Response result = foodMapServiceImpl.listTrainFoodByTripId("trip_id", headers);
+//        Assert.assertEquals(new Response<>(0, "No content", null), result);
+//    }
 
     @Test
     public void testGetFoodStoresByStationIds1() {

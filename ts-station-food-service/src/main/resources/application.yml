@@ -3,10 +3,10 @@ server:
 
 spring:
   application:
-    name: ts-food-map-service
+    name: ts-station-food-service
   data:
     mongodb:
-      host: ts-food-map-mongo
+      host: ts-staion-food-mongo
 #      username: user
 #      password: ${MONGODB_PASSWORD}
       database: ts

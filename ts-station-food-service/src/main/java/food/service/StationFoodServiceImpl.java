@@ -2,9 +2,7 @@ package food.service;
 
 import edu.fudan.common.util.Response;
 import food.entity.StationFoodStore;
-import food.entity.TrainFood;
 import food.repository.StationFoodRepository;
-import food.repository.TrainFoodRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +18,8 @@ public class StationFoodServiceImpl implements StationFoodService {
     @Autowired
     StationFoodRepository stationFoodRepository;
 
-    @Autowired
-    TrainFoodRepository trainFoodRepository;
+//    @Autowired
+//    TrainFoodRepository trainFoodRepository;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StationFoodServiceImpl.class);
 
@@ -40,16 +38,16 @@ public class StationFoodServiceImpl implements StationFoodService {
         }
     }
 
-    @Override
-    public TrainFood createTrainFood(TrainFood tf, HttpHeaders headers) {
-        TrainFood tfTemp = trainFoodRepository.findById(tf.getId());
-        if (tfTemp != null) {
-            StationFoodServiceImpl.LOGGER.error("[Init TrainFood] Already Exists Id: {}", tf.getId());
-        } else {
-            trainFoodRepository.save(tf);
-        }
-        return tf;
-    }
+//    @Override
+//    public TrainFood createTrainFood(TrainFood tf, HttpHeaders headers) {
+//        TrainFood tfTemp = trainFoodRepository.findById(tf.getId());
+//        if (tfTemp != null) {
+//            StationFoodServiceImpl.LOGGER.error("[Init TrainFood] Already Exists Id: {}", tf.getId());
+//        } else {
+//            trainFoodRepository.save(tf);
+//        }
+//        return tf;
+//    }
 
     @Override
     public Response listFoodStores(HttpHeaders headers) {
@@ -62,16 +60,16 @@ public class StationFoodServiceImpl implements StationFoodService {
         }
     }
 
-    @Override
-    public Response listTrainFood(HttpHeaders headers) {
-        List<TrainFood> trainFoodList = trainFoodRepository.findAll();
-        if (trainFoodList != null && !trainFoodList.isEmpty()) {
-            return new Response<>(1, success, trainFoodList);
-        } else {
-            StationFoodServiceImpl.LOGGER.error("List train food error: {}", noContent);
-            return new Response<>(0, noContent, null);
-        }
-    }
+//    @Override
+//    public Response listTrainFood(HttpHeaders headers) {
+//        List<TrainFood> trainFoodList = trainFoodRepository.findAll();
+//        if (trainFoodList != null && !trainFoodList.isEmpty()) {
+//            return new Response<>(1, success, trainFoodList);
+//        } else {
+//            StationFoodServiceImpl.LOGGER.error("List train food error: {}", noContent);
+//            return new Response<>(0, noContent, null);
+//        }
+//    }
 
     @Override
     public Response listFoodStoresByStationId(String stationId, HttpHeaders headers) {
@@ -84,16 +82,16 @@ public class StationFoodServiceImpl implements StationFoodService {
         }
     }
 
-    @Override
-    public Response listTrainFoodByTripId(String tripId, HttpHeaders headers) {
-        List<TrainFood> trainFoodList = trainFoodRepository.findByTripId(tripId);
-        if (trainFoodList != null) {
-            return new Response<>(1, success, trainFoodList);
-        } else {
-            StationFoodServiceImpl.LOGGER.error("List train food by trip id error: {}, tripId: {}", noContent, tripId);
-            return new Response<>(0, noContent, null);
-        }
-    }
+//    @Override
+//    public Response listTrainFoodByTripId(String tripId, HttpHeaders headers) {
+//        List<TrainFood> trainFoodList = trainFoodRepository.findByTripId(tripId);
+//        if (trainFoodList != null) {
+//            return new Response<>(1, success, trainFoodList);
+//        } else {
+//            StationFoodServiceImpl.LOGGER.error("List train food by trip id error: {}, tripId: {}", noContent, tripId);
+//            return new Response<>(0, noContent, null);
+//        }
+//    }
 
     @Override
     public Response getFoodStoresByStationIds(List<String> stationIds) {
