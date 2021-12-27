@@ -1,8 +1,7 @@
 package food.init;
 
 import food.entity.Food;
-import food.entity.FoodStore;
-import food.entity.TrainFood;
+import food.entity.StationFoodStore;
 import food.service.StationFoodService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +32,7 @@ public class InitData implements CommandLineRunner{
             String line = br1.readLine();
             while( line != null ){
                 if( !line.trim().equals("") ){
-                    FoodStore fs = new FoodStore();
+                    StationFoodStore fs = new StationFoodStore();
                     fs.setId(UUID.randomUUID());
                     String[] lineTemp = line.trim().split("=");
                     fs.setStationId(lineTemp[1]);

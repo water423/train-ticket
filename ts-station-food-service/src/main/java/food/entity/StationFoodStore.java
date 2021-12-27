@@ -12,7 +12,7 @@ import java.util.UUID;
 @Data
 @Document(collection = "stores")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FoodStore {
+public class StationFoodStore {
 
     @Id
     private UUID id;
@@ -30,7 +30,7 @@ public class FoodStore {
 
     private List<Food> foodList;
 
-    public FoodStore(){
+    public StationFoodStore(){
         //Default Constructor
         this.stationId = "";
     }

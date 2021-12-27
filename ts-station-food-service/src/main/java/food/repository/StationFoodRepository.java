@@ -1,6 +1,6 @@
 package food.repository;
 
-import food.entity.FoodStore;
+import food.entity.StationFoodStore;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface StationFoodRepository extends MongoRepository<FoodStore, String> {
+public interface StationFoodRepository extends MongoRepository<StationFoodStore, String> {
 
-    FoodStore findById(UUID id);
+    StationFoodStore findById(UUID id);
 
     @Query("{ 'stationId' : ?0 }")
-    List<FoodStore> findByStationId(String stationId);
-    List<FoodStore> findByStationIdIn(List<String> stationIds);
+    List<StationFoodStore> findByStationId(String stationId);
+    List<StationFoodStore> findByStationIdIn(List<String> stationIds);
 
 
     @Override
-    List<FoodStore> findAll();
+    List<StationFoodStore> findAll();
 
     void deleteById(UUID id);
 }

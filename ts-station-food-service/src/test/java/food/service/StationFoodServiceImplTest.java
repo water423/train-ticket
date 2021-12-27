@@ -1,7 +1,7 @@
 package food.service;
 
 import edu.fudan.common.util.Response;
-import food.entity.FoodStore;
+import food.entity.StationFoodStore;
 import food.entity.TrainFood;
 import food.repository.StationFoodRepository;
 import food.repository.TrainFoodRepository;
@@ -38,7 +38,7 @@ public class StationFoodServiceImplTest {
 
     @Test
     public void testCreateFoodStore1() {
-        FoodStore fs = new FoodStore();
+        StationFoodStore fs = new StationFoodStore();
         Mockito.when(stationFoodRepository.findById(Mockito.any(UUID.class))).thenReturn(fs);
         Response result = foodMapServiceImpl.createFoodStore(fs, headers);
         Assert.assertEquals(new Response<>(0, "Already Exists Id", null), result);
@@ -46,9 +46,9 @@ public class StationFoodServiceImplTest {
 
     @Test
     public void testCreateFoodStore2() {
-        FoodStore fs = new FoodStore();
+        StationFoodStore fs = new StationFoodStore();
         Mockito.when(stationFoodRepository.findById(Mockito.any(UUID.class))).thenReturn(null);
-        Mockito.when(stationFoodRepository.save(Mockito.any(FoodStore.class))).thenReturn(null);
+        Mockito.when(stationFoodRepository.save(Mockito.any(StationFoodStore.class))).thenReturn(null);
         Response result = foodMapServiceImpl.createFoodStore(fs, headers);
         Assert.assertEquals(new Response<>(1, "Save Success", fs), result);
     }
@@ -72,11 +72,11 @@ public class StationFoodServiceImplTest {
 
     @Test
     public void testListFoodStores1() {
-        List<FoodStore> foodStores = new ArrayList<>();
-        foodStores.add(new FoodStore());
-        Mockito.when(stationFoodRepository.findAll()).thenReturn(foodStores);
+        List<StationFoodStore> stationFoodStores = new ArrayList<>();
+        stationFoodStores.add(new StationFoodStore());
+        Mockito.when(stationFoodRepository.findAll()).thenReturn(stationFoodStores);
         Response result = foodMapServiceImpl.listFoodStores(headers);
-        Assert.assertEquals(new Response<>(1, "Success", foodStores), result);
+        Assert.assertEquals(new Response<>(1, "Success", stationFoodStores), result);
     }
 
     @Test
@@ -104,11 +104,11 @@ public class StationFoodServiceImplTest {
 
     @Test
     public void testListFoodStoresByStationId1() {
-        List<FoodStore> foodStoreList = new ArrayList<>();
-        foodStoreList.add(new FoodStore());
-        Mockito.when(stationFoodRepository.findByStationId(Mockito.anyString())).thenReturn(foodStoreList);
+        List<StationFoodStore> stationFoodStoreList = new ArrayList<>();
+        stationFoodStoreList.add(new StationFoodStore());
+        Mockito.when(stationFoodRepository.findByStationId(Mockito.anyString())).thenReturn(stationFoodStoreList);
         Response result = foodMapServiceImpl.listFoodStoresByStationId("station_id", headers);
-        Assert.assertEquals(new Response<>(1, "Success", foodStoreList), result);
+        Assert.assertEquals(new Response<>(1, "Success", stationFoodStoreList), result);
     }
 
     @Test
@@ -137,11 +137,11 @@ public class StationFoodServiceImplTest {
     @Test
     public void testGetFoodStoresByStationIds1() {
         List<String> stationIds = new ArrayList<>();
-        List<FoodStore> foodStoreList = new ArrayList<>();
-        foodStoreList.add(new FoodStore());
-        Mockito.when(stationFoodRepository.findByStationIdIn(Mockito.anyList())).thenReturn(foodStoreList);
+        List<StationFoodStore> stationFoodStoreList = new ArrayList<>();
+        stationFoodStoreList.add(new StationFoodStore());
+        Mockito.when(stationFoodRepository.findByStationIdIn(Mockito.anyList())).thenReturn(stationFoodStoreList);
         Response result = foodMapServiceImpl.getFoodStoresByStationIds(stationIds);
-        Assert.assertEquals(new Response<>(1, "Success", foodStoreList), result);
+        Assert.assertEquals(new Response<>(1, "Success", stationFoodStoreList), result);
     }
 
     @Test

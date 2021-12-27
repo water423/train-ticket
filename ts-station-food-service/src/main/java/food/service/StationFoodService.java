@@ -9,7 +9,7 @@ import java.util.List;
 public interface StationFoodService {
 
     // create data
-    Response createFoodStore(FoodStore fs, HttpHeaders headers);
+    Response createFoodStore(StationFoodStore fs, HttpHeaders headers);
 
     TrainFood createTrainFood(TrainFood tf, HttpHeaders headers);
 
