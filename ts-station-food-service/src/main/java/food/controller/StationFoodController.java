@@ -21,27 +21,27 @@ public class StationFoodController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StationFoodController.class);
 
-    @GetMapping(path = "/foodstores/welcome")
+    @GetMapping(path = "/stationfoodstores/welcome")
     public String home() {
         return "Welcome to [ Food store Service ] !";
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/foodstores")
+    @GetMapping("/stationfoodstores")
     public HttpEntity getAllFoodStores(@RequestHeader HttpHeaders headers) {
         StationFoodController.LOGGER.info("[Food Map Service][Get All FoodStores]");
         return ok(stationFoodService.listFoodStores(headers));
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/foodstores/{stationId}")
+    @GetMapping("/stationfoodstores/{stationId}")
     public HttpEntity getFoodStoresOfStation(@PathVariable String stationId, @RequestHeader HttpHeaders headers) {
         StationFoodController.LOGGER.info("[Food Map Service][Get FoodStores By StationId]");
         return ok(stationFoodService.listFoodStoresByStationId(stationId, headers));
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/foodstores")
+    @PostMapping("/stationfoodstores")
     public HttpEntity getFoodStoresByStationIds(@RequestBody List<String> stationIdList) {
         StationFoodController.LOGGER.info("[Food Map Service][Get FoodStores By StationIds]");
         return ok(stationFoodService.getFoodStoresByStationIds(stationIdList));
