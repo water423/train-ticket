@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fdse.microservice</groupId>
-    <artifactId>ts-food-map-service</artifactId>
+    <artifactId>ts-station-food-service</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>ts-food-map-service</name>
+    <name>ts-station-food-service</name>
 
     <parent>
         <groupId>org.services</groupId>
