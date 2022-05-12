@@ -1,5 +1,9 @@
 package verifycode.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.BasicAuthDefinition;
+import io.swagger.annotations.SwaggerDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +23,15 @@ import java.util.Map;
  * @author fdse
  */
 @RestController
-@RequestMapping("/api/v1/verifycode")
+@Api(value = "Verification-Code", tags = "验证码")
+@RequestMapping("api/v1/verifycode")
 public class VerifyCodeController {
     private static final Logger LOGGER = LoggerFactory.getLogger(VerifyCodeController.class);
 
     @Autowired
     private VerifyCodeService verifyCodeService;
 
+    @ApiOperation("generate verification image")
     @GetMapping("/generate")
     public void imageCode(@RequestHeader HttpHeaders headers,
                           HttpServletRequest request,

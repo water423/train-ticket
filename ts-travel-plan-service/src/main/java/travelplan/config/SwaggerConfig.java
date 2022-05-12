@@ -1,4 +1,4 @@
-package edu.fudan.common.config;
+package travelplan.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,36 +13,39 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- * @author fdse
- */
 @Configuration
-@EnableSwagger2
+//@EnableSwagger2
 public class SwaggerConfig {
-
     @Value("${swagger.controllerPackage}")
     private String controllerPackagePath;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SwaggerConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(edu.fudan.common.config.SwaggerConfig.class);
 
     @Bean
     public Docket createRestApi() {
         SwaggerConfig.LOGGER.info("====-- {}", controllerPackagePath);
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .groupName("ts-service")
-                .select().apis(RequestHandlerSelectors.basePackage(controllerPackagePath))
-                .paths(PathSelectors.regex("/api/v1/.*"))
+                //是否开启 (true 开启  false隐藏。生产环境建议隐藏)
+                //.enable(false)
+                .select()
+                //扫描的路径包,设置basePackage会将包下的所有被@Api标记类的所有方法作为api
+                .apis(RequestHandlerSelectors.basePackage(controllerPackagePath))
+                //指定路径处理PathSelectors.any()代表所有的路径
+                .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Springboot builds the API documentation with swagger")
-                .description("Simple and elegant restful style")
+                //设置文档标题(API名称)
+                .title("SpringBoot中使用Swagger2接口规范")
+                //文档描述
+                .description("接口说明")
+                //服务条款URL
                 .termsOfServiceUrl("https://github.com/FudanSELab/train-ticket")
-                .version("1.0")
+                //版本号
+                .version("1.0.0")
                 .build();
     }
-
 }

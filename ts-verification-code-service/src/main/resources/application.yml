@@ -2,9 +2,14 @@ server:
   port: 15678  # HTTP (Tomcat) port
 
 spring:
-
   application:
     name: ts-verification-code-service
 
 swagger:
   controllerPackage: verifycode.controller
+
+#springfox:
+#  documentation:
+#    swagger:
+#      v2:
+#        path: /api/v1/verifycode
