@@ -1,20 +1,27 @@
 package seat.config;
 
 import edu.fudan.common.security.jwt.JWTFilter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import javax.servlet.Filter;
 
 import static org.springframework.web.cors.CorsConfiguration.ALL;
 
@@ -25,7 +32,34 @@ import static org.springframework.web.cors.CorsConfiguration.ALL;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    //--------------------------------------------------
+    @Bean
+    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowUrlEncodedSlash(true);
+        return firewall;
+    }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+//新防火墙强制覆盖原来的
+        super.configure(web);
+        web.httpFirewall(allowUrlEncodedSlashHttpFirewall());
+    }
+    //------------------------------------------------
+    //这个应该是有用的，但是上面那个不一定没用，因为试的时候波折颇多暂时先都放着吧
+    @Autowired
+    private Filter uriFormatFilter;
 
+    @Bean
+    public FilterRegistrationBean setFilter() {
+        FilterRegistrationBean filterBean = new FilterRegistrationBean();
+        filterBean.setFilter(uriFormatFilter);
+        filterBean.setName("uriFormatFilter");
+        filterBean.addUrlPatterns("/*");
+        filterBean.setOrder(-10000);
+        return filterBean;
+    }
+//------------------------------------------------
     /**
      * load password encoder
      *

@@ -26,6 +26,12 @@ public class SwaggerConfig {
         SwaggerConfig.LOGGER.info("====-- {}", controllerPackagePath);
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+//                .pathProvider(new RelativePathProvider() {
+//                    @Override
+//                    public String getApplicationBasePath() {
+//                        return "/test"+ super.getApplicationBasePath();
+//                    }
+//                })
                 //是否开启 (true 开启  false隐藏。生产环境建议隐藏)
                 //.enable(false)
                 .select()
@@ -34,14 +40,15 @@ public class SwaggerConfig {
                 //指定路径处理PathSelectors.any()代表所有的路径
                 .paths(PathSelectors.any())
                 .build();
+
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //设置文档标题(API名称)
-                .title("SpringBoot中使用Swagger2接口规范")
+                .title("train-ticket SpringBoot Swagger2")
                 //文档描述
-                .description("接口说明")
+                .description("API Specification")
                 //服务条款URL
                 .termsOfServiceUrl("https://github.com/FudanSELab/train-ticket")
                 //版本号

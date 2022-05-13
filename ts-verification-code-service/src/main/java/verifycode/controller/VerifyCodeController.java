@@ -23,7 +23,7 @@ import java.util.Map;
  * @author fdse
  */
 @RestController
-@Api(value = "Verification-Code", tags = "验证码")
+@Api(tags = "Verification-Code")
 @RequestMapping("api/v1/verifycode")
 public class VerifyCodeController {
     private static final Logger LOGGER = LoggerFactory.getLogger(VerifyCodeController.class);
