@@ -32,3 +32,5 @@ spring:
 
 swagger:
   controllerPackage: notification.controller
+
+test_send_mail_user: 1617095973@qq.com
