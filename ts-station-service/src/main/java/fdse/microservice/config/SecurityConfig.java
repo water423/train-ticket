@@ -29,19 +29,6 @@ import static org.springframework.web.cors.CorsConfiguration.ALL;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    //--------------------------------------------------
-    @Bean
-    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
-        StrictHttpFirewall firewall = new StrictHttpFirewall();
-        firewall.setAllowUrlEncodedSlash(true);
-        return firewall;
-    }
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-//新防火墙强制覆盖原来的
-        super.configure(web);
-        web.httpFirewall(allowUrlEncodedSlashHttpFirewall());
-    }
     //------------------------------------------------
     //这个应该是有用的，但是上面那个不一定没用，因为试的时候波折颇多暂时先都放着吧
     @Autowired

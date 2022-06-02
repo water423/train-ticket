@@ -2,6 +2,8 @@ package adminbasic.controller;
 
 import adminbasic.entity.*;
 import adminbasic.service.AdminBasicInfoService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,7 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/adminbasic/contacts")
+    @ApiImplicitParam(name = "headers", paramType = "header", required = true)
     public HttpEntity getAllContacts(@RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Find All Contacts by admin ");
         return ok(adminBasicInfoService.getAllContacts(headers));
@@ -36,6 +39,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/adminbasic/contacts/{contactsId}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "contactsId", dataType = "String", paramType = "path", required = true,defaultValue = "75ce3fe9-5cdb-49e9-bd27-6df080a2f38b"),
+            @ApiImplicitParam(name = "headers", paramType = "header", required = true)
+    })
     public HttpEntity deleteContacts(@PathVariable String contactsId, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Delete Contacts by admin ");
         return ok(adminBasicInfoService.deleteContact(contactsId, headers));
@@ -43,6 +50,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @PutMapping(path = "/adminbasic/contacts")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "mci",value = "Contacts",dataType = "Contacts", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity modifyContacts(@RequestBody Contacts mci, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Modify Contacts by admin: ");
         return ok(adminBasicInfoService.modifyContact(mci, headers));
@@ -50,6 +61,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/adminbasic/contacts")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "c", value = "Contacts",dataType = "Contacts", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity addContacts(@RequestBody Contacts c, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Modify Contacts by admin  ");
         return ok(adminBasicInfoService.addContact(c, headers));
@@ -57,6 +72,7 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/adminbasic/stations")
+    @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
     public HttpEntity getAllStations(@RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Find All Station by admin  ");
         return ok(adminBasicInfoService.getAllStations(headers));
@@ -64,6 +80,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/adminbasic/stations")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "s", value = "Station",dataType = "Station", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity deleteStation(@RequestBody Station s, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Delete Station by admin ");
         return ok(adminBasicInfoService.deleteStation(s, headers));
@@ -71,6 +91,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @PutMapping(path = "/adminbasic/stations")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "s", value = "Station",dataType = "Station", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity modifyStation(@RequestBody Station s, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Modify Station by admin ");
         return ok(adminBasicInfoService.modifyStation(s, headers));
@@ -78,6 +102,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/adminbasic/stations")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "s", value = "Station",dataType = "Station", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity addStation(@RequestBody Station s, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Modify Station by admin");
         return ok(adminBasicInfoService.addStation(s, headers));
@@ -85,6 +113,7 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/adminbasic/trains")
+    @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
     public HttpEntity getAllTrains(@RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Find All Train by admin: ");
         return ok(adminBasicInfoService.getAllTrains(headers));
@@ -92,6 +121,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/adminbasic/trains/{id}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id",dataType = "String", paramType = "path",required = true,defaultValue = "GaoTieOne"),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity deleteTrain(@PathVariable String id, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Delete Train by admin");
         return ok(adminBasicInfoService.deleteTrain(id, headers));
@@ -99,6 +132,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @PutMapping(path = "/adminbasic/trains")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "t", value = "TrainType",dataType = "TrainType", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity modifyTrain(@RequestBody TrainType t, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Modify Train by admin  ");
         return ok(adminBasicInfoService.modifyTrain(t, headers));
@@ -106,6 +143,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/adminbasic/trains")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "t", value = "TrainType",dataType = "TrainType", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity addTrain(@RequestBody TrainType t, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Modify Train by admin ");
         return ok(adminBasicInfoService.addTrain(t, headers));
@@ -113,6 +154,7 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/adminbasic/configs")
+    @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
     public HttpEntity getAllConfigs(@RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Find All Config by admin  ");
         return ok(adminBasicInfoService.getAllConfigs(headers));
@@ -120,6 +162,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/adminbasic/configs/{name}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name", value = "name",dataType = "String", paramType = "path",required = true,defaultValue = "DirectTicketAllocationProportion"),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity deleteConfig(@PathVariable String name, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Delete Config by admin ");
         return ok(adminBasicInfoService.deleteConfig(name, headers));
@@ -127,6 +173,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @PutMapping(path = "/adminbasic/configs")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "c", value = "Config",dataType = "Config", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity modifyConfig(@RequestBody Config c, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Modify Config by admin ");
         return ok(adminBasicInfoService.modifyConfig(c, headers));
@@ -134,6 +184,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/adminbasic/configs")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "c", value = "Config",dataType = "Config", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity addConfig(@RequestBody Config c, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Modify Config by admin  ");
         return ok(adminBasicInfoService.addConfig(c, headers));
@@ -148,6 +202,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/adminbasic/prices")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pi", value = "PriceInfo",dataType = "PriceInfo", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity deletePrice(@RequestBody PriceInfo pi, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Delete Price by admin  ");
         return ok(adminBasicInfoService.deletePrice(pi, headers));
@@ -155,6 +213,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @PutMapping(path = "/adminbasic/prices")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pi", value = "PriceInfo",dataType = "PriceInfo", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity modifyPrice(@RequestBody PriceInfo pi, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Modify Price by admin  ");
         return ok(adminBasicInfoService.modifyPrice(pi, headers));
@@ -162,6 +224,10 @@ public class AdminBasicInfoController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/adminbasic/prices")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pi", value = "PriceInfo",dataType = "PriceInfo", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity addPrice(@RequestBody PriceInfo pi, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[Admin Basic Info Service][Add Price by admin");
         return ok(adminBasicInfoService.addPrice(pi, headers));
