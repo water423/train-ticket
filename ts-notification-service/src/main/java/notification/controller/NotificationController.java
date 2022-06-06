@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * @author Wenvi
  * @date 2017/6/15
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/api/v1/notifyservice")
 public class NotificationController {

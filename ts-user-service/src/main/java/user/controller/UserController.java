@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 import user.dto.UserDto;
 import user.service.UserService;
 
@@ -18,6 +19,7 @@ import static org.springframework.http.ResponseEntity.ok;
 /**
  * @author fdse
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/api/v1/userservice/users")
 public class UserController {

@@ -10,12 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import route.entity.RouteInfo;
 import route.service.RouteService;
+import springfox.documentation.annotations.ApiIgnore;
 
 import static org.springframework.http.ResponseEntity.ok;
 
 /**
  * @author fdse
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/api/v1/routeservice")
 public class RouteController {

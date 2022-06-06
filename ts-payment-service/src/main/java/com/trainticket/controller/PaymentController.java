@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -15,6 +16,7 @@ import static org.springframework.http.ResponseEntity.ok;
  * @author Chenjie
  * @date 2017/4/7
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/api/v1/paymentservice")
 public class PaymentController {

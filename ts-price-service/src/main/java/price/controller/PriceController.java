@@ -10,11 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import price.entity.PriceConfig;
 import price.service.PriceService;
+import springfox.documentation.annotations.ApiIgnore;
+
 import static org.springframework.http.ResponseEntity.ok;
 
 /**
  * @author fdse
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/api/v1/priceservice")
 public class PriceController {

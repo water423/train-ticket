@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.UUID;
 
@@ -30,6 +31,7 @@ public class ConsignController {
         return "Welcome to [ Consign Service ] !";
     }
 
+    @ApiIgnore
     @PostMapping(value = "/consigns")
     public HttpEntity insertConsign(@RequestBody Consign request,
                                     @RequestHeader HttpHeaders headers) {
@@ -57,6 +59,7 @@ public class ConsignController {
         return ok(service.queryByOrderId(newid, headers));
     }
 
+    @ApiIgnore
     @GetMapping(value = "/consigns/{consignee}")
     public HttpEntity findByConsignee(@PathVariable String consignee, @RequestHeader HttpHeaders headers) {
         logger.info("Find consign by consignee: {}", consignee);

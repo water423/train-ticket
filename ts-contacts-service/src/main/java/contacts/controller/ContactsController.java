@@ -2,6 +2,8 @@ package contacts.controller;
 
 import contacts.entity.*;
 import edu.fudan.common.util.Response;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,7 @@ public class ContactsController {
         return ok(contactsService.getAllContacts(headers));
     }
 
+    @ApiOperation(value = "post contacts",httpMethod = "post")
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/contacts")
     public ResponseEntity<Response> createNewContacts(@RequestBody Contacts aci,
@@ -69,6 +72,7 @@ public class ContactsController {
         return ok(contactsService.modify(info, headers));
     }
 
+    @ApiOperation(value = "get /contacts/account/{accountId}",httpMethod = "get")
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/contacts/account/{accountId}")
     public HttpEntity findContactsByAccountId(@PathVariable String accountId, @RequestHeader HttpHeaders headers) {

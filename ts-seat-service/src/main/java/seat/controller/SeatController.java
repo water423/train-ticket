@@ -8,12 +8,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 import seat.entity.Seat;
 import seat.service.SeatService;
+import springfox.documentation.annotations.ApiIgnore;
 
 import static org.springframework.http.ResponseEntity.ok;
 
 /**
  * @author fdse
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/api/v1/seatservice")
 public class SeatController {

@@ -1,6 +1,8 @@
 package execute.controller;
 
 import execute.serivce.ExecuteService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import static org.springframework.http.ResponseEntity.ok;
 /**
  * @author fdse
  */
+@Api("executeservice")
 @RestController
 @RequestMapping("/api/v1/executeservice")
 public class ExecuteControlller {
@@ -29,6 +32,7 @@ public class ExecuteControlller {
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/execute/execute/{orderId}")
+    @ApiOperation("executeTicket")
     public HttpEntity executeTicket(@PathVariable String orderId, @RequestHeader HttpHeaders headers) {
         ExecuteControlller.LOGGER.info("[Execute] Id: {}", orderId);
         // null

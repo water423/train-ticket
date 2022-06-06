@@ -13,7 +13,7 @@ $("#query_food_button").click(function(){
     data.tripId = $('#food_trip_id').val() || "";
 
     // alert(JSON.stringify(data));
-    $.ajax({
+    $.ajax({inside_payment/queryAccount
         type: "post",
         url: "/food/getFood",
         contentType: "application/json",
