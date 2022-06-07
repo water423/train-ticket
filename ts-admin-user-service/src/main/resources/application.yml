@@ -6,4 +6,5 @@ spring:
     name: ts-admin-user-service
 
 swagger:
+  enable: true
   controllerPackage: adminuser.controller

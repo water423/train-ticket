@@ -1,5 +1,7 @@
 package travel2.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,13 +14,16 @@ import java.util.Date;
  */
 @Data
 @AllArgsConstructor
+@ApiModel
 public class TripInfo {
     @Valid
     @NotNull
+    @ApiModelProperty(name = "startingPlace",value = "startingPlace",dataType = "String",example = "Shang Hai Hong Qiao")
     private String startingPlace;
 
     @Valid
     @NotNull
+    @ApiModelProperty(name = "endPlace",value = "endPlace",dataType = "String",example = "Tai Yuan")
     private String endPlace;
 
     @Valid

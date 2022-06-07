@@ -1,5 +1,7 @@
 package order.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Date;
@@ -8,11 +10,13 @@ import java.util.Date;
  * @author fdse
  */
 @Data
+@ApiModel
 public class OrderInfo {
 
     /**
      * account id
      */
+    @ApiModelProperty(name = "loginId",value = "loginId",dataType = "String",example = "4d2a46c7-71cb-4cf1-b5bb-b68406d9da6f")
     private String loginId;
 
     private Date travelDateStart;

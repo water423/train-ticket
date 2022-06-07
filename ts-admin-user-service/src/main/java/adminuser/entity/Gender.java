@@ -1,8 +1,11 @@
 package adminuser.entity;
 
+import adminuser.annotation.SwaggerDisplayEnum;
+
 /**
  * @author fdse
  */
+@SwaggerDisplayEnum
 public enum Gender {
 
     /**

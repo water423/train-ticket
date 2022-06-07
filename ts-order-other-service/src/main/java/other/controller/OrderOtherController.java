@@ -1,5 +1,7 @@
 package other.controller;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +65,10 @@ public class OrderOtherController {
 
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "qi", value = "QueryInfo",dataType = "QueryInfo", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/orderOther/refresh")
     public HttpEntity queryOrdersForRefresh(@RequestBody QueryInfo qi,

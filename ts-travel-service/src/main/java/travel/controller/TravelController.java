@@ -1,5 +1,7 @@
 package travel.controller;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +107,10 @@ public class TravelController {
      */
     @CrossOrigin(origins = "*")
     @PostMapping(value = "/trips/left")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "info", value = "TripInfo",dataType = "TripInfo", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity queryInfo(@RequestBody TripInfo info, @RequestHeader HttpHeaders headers) {
         if (info.getStartingPlace() == null || info.getStartingPlace().length() == 0 ||
                 info.getEndPlace() == null || info.getEndPlace().length() == 0 ||

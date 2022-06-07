@@ -30,6 +30,10 @@ public class InsidePaymentController {
         return "Welcome to [ InsidePayment Service ] !";
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "info", value = "PaymentInfo",dataType = "PaymentInfo", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     @PostMapping(value = "/inside_payment")
     public HttpEntity pay(@RequestBody PaymentInfo info, @RequestHeader HttpHeaders headers) {
         InsidePaymentController.LOGGER.info("[Inside Payment Service][Pay] Pay for: {}", info.getOrderId());

@@ -1,5 +1,7 @@
 package order.controller;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import order.entity.*;
 import order.service.OrderService;
 import org.slf4j.Logger;
@@ -63,6 +65,10 @@ public class OrderController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/order/refresh")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "qi", value = "OrderInfo",dataType = "OrderInfo", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity queryOrdersForRefresh(@RequestBody OrderInfo qi,
                                             @RequestHeader HttpHeaders headers) {
         OrderController.LOGGER.info("[Query Orders] Query Orders for {}", qi.getLoginId());

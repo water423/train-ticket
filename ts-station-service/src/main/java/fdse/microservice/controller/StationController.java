@@ -3,6 +3,8 @@ package fdse.microservice.controller;
 import edu.fudan.common.util.Response;
 import fdse.microservice.entity.*;
 import fdse.microservice.service.StationService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +77,10 @@ public class StationController {
     // according to station id ---> query station name
     @CrossOrigin(origins = "*")
     @GetMapping(value = "/stations/name/{stationIdForName}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "stationId", value = "stationId",dataType = "String", paramType = "path",required = true,defaultValue = "shanghaihongqiao"),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity queryById(@PathVariable(value = "stationIdForName")
                                         String stationId, @RequestHeader HttpHeaders headers) {
         StationController.LOGGER.info("Query stations By Id: {}", stationId);

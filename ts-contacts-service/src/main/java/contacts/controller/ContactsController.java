@@ -3,6 +3,8 @@ package contacts.controller;
 import contacts.entity.*;
 import edu.fudan.common.util.Response;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +43,10 @@ public class ContactsController {
     }
 
     @ApiOperation(value = "post contacts",httpMethod = "post")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "aci", value = "Contacts",dataType = "Contacts", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/contacts")
     public ResponseEntity<Response> createNewContacts(@RequestBody Contacts aci,
@@ -73,6 +79,10 @@ public class ContactsController {
     }
 
     @ApiOperation(value = "get /contacts/account/{accountId}",httpMethod = "get")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "accountId", value = "accountId",dataType = "String", paramType = "path",required = true,defaultValue = "4d2a46c7-71cb-4cf1-b5bb-b68406d9da6f"),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/contacts/account/{accountId}")
     public HttpEntity findContactsByAccountId(@PathVariable String accountId, @RequestHeader HttpHeaders headers) {

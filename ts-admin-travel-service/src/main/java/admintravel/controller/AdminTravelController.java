@@ -2,6 +2,8 @@ package admintravel.controller;
 
 import admintravel.entity.TravelInfo;
 import admintravel.service.AdminTravelService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,10 @@ public class AdminTravelController {
     }
 
     @PostMapping(value = "/admintravel")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "request", value = "TravelInfo",dataType = "TravelInfo", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity addTravel(@RequestBody TravelInfo request, @RequestHeader HttpHeaders headers) {
         logger.info("Add travel, trip id: {}, train type id: {}, form station {} to station {}, login id: {}",
                 request.getTripId(), request.getTrainTypeId(), request.getStartingStationId(), request.getStationsId(), request.getLoginId());
@@ -42,6 +48,10 @@ public class AdminTravelController {
     }
 
     @PutMapping(value = "/admintravel")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "request", value = "TravelInfo",dataType = "TravelInfo", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity updateTravel(@RequestBody TravelInfo request, @RequestHeader HttpHeaders headers) {
         logger.info("Update travel, trip id: {}, train type id: {}, form station {} to station {}, login id: {}",
                 request.getTripId(), request.getTrainTypeId(), request.getStartingStationId(), request.getStationsId(), request.getLoginId());
@@ -49,6 +59,10 @@ public class AdminTravelController {
     }
 
     @DeleteMapping(value = "/admintravel/{tripId}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "tripId", value = "tripId",dataType = "String", paramType = "path",required = true,defaultValue = "G1234"),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity deleteTravel(@PathVariable String tripId, @RequestHeader HttpHeaders headers) {
         logger.info("Delete travel: trip id: {}", tripId);
         return ok(adminTravelService.deleteTravel(tripId, headers));

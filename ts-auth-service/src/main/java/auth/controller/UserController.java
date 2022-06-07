@@ -7,6 +7,8 @@ import auth.exception.UserOperationException;
 import auth.service.TokenService;
 import auth.service.UserService;
 import edu.fudan.common.util.Response;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "dao", value = "BasicAuthDto",dataType = "BasicAuthDto", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public ResponseEntity<Response> getToken(@RequestBody BasicAuthDto dao , @RequestHeader HttpHeaders headers) {
         logger.info("Login request of username: {}", dao.getUsername());
         try {

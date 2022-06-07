@@ -1,8 +1,11 @@
 package adminorder.entity;
 
+import adminorder.annotation.SwaggerDisplayEnum;
+
 /**
  * @author fdse
  */
+@SwaggerDisplayEnum
 public enum OrderStatus {
 
     /**

@@ -7,4 +7,5 @@ spring:
 
 
 swagger:
+  enable: true
   controllerPackage: adminorder.controller

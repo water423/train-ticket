@@ -2,6 +2,8 @@ package consign.controller;
 
 import consign.entity.Consign;
 import consign.service.ConsignService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +42,20 @@ public class ConsignController {
     }
 
     @PutMapping(value = "/consigns")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "request", value = "Consign",dataType = "Consign", paramType = "body",required = true),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity updateConsign(@RequestBody Consign request, @RequestHeader HttpHeaders headers) {
         logger.info("Update consign record, id: {}", request.getId());
         return ok(service.updateConsignRecord(request, headers));
     }
 
     @GetMapping(value = "/consigns/account/{id}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id",dataType = "String", paramType = "path",required = true,defaultValue = "4d2a46c7-71cb-4cf1-b5bb-b68406d9da6f"),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity findByAccountId(@PathVariable String id, @RequestHeader HttpHeaders headers) {
         logger.info("Find consign by account id: {}", id);
         UUID newid = UUID.fromString(id);
@@ -53,6 +63,10 @@ public class ConsignController {
     }
 
     @GetMapping(value = "/consigns/order/{id}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id",dataType = "String", paramType = "path",required = true,defaultValue = "fa9bd99c-2f28-45a9-9d87-7630caaccc6a"),
+            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+    })
     public HttpEntity findByOrderId(@PathVariable String id, @RequestHeader HttpHeaders headers) {
         logger.info("Find consign by order id: {}", id);
         UUID newid = UUID.fromString(id);
