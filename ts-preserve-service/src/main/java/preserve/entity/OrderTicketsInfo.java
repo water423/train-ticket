@@ -13,6 +13,16 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class OrderTicketsInfo {
+    private String consigneeName = "";
+
+    private String consigneePhone = "";
+
+    private double consigneeWeight;
+
+    private String from;
+
+    private String to;
+
     private String accountId;
 
     private String contactsId;
@@ -23,9 +33,7 @@ public class OrderTicketsInfo {
 
     private Date date;
 
-    private String from;
 
-    private String to;
 
     private int assurance;
 
@@ -43,11 +51,7 @@ public class OrderTicketsInfo {
 
     private String handleDate;
 
-    private String consigneeName = "";
 
-    private String consigneePhone = "";
-
-    private double consigneeWeight;
 
     private boolean isWithin;
 

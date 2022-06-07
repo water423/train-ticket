@@ -13,4 +13,4 @@ spring:
       port: 27017
 
 swagger:
-  controllerPackage: food.controller,food.entity
+  controllerPackage: food.controller

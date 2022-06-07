@@ -2,6 +2,8 @@ package inside_payment.controller;
 
 import inside_payment.entity.*;
 import inside_payment.service.InsidePaymentService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,10 @@ public class InsidePaymentController {
         return ok(service.pay(info, headers));
     }
 
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "info", value = "AccountInfo",dataType = "AccountInfo", paramType = "body",required = true),
+//            @ApiImplicitParam(name = "headers",  paramType = "header",required = true)
+//    })
     @PostMapping(value = "/inside_payment/account")
     public HttpEntity createAccount(@RequestBody AccountInfo info, @RequestHeader HttpHeaders headers) {
         LOGGER.info("Create account, accountInfo: {}", info);
