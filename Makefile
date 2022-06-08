@@ -7,9 +7,17 @@ Tag=latest
 .PHONY: build
 build: clean-image package build-image
 
+.PHONY: build-image
+build-image:
+	@hack/build-image.sh
+
 .PHONY: package
 package:
 	@mvn clean package -DskipTests
+
+.PHONY: add-jacoco
+build-image:
+	@hack/add-jacoco.sh
 
 .PHONY: build-image
 build-image:
