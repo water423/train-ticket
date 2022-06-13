@@ -6,9 +6,11 @@ echo "add jacoco.jar"
 echo
 for dir in ts-*; do
     if [[ -d $dir ]]; then
-        if [[ -n $(ls "$dir" | grep -i Dockerfile) ]]; then
-            echo "add-jacoco ${dir}"
-            cp jacocoagent.jar "${dir}"/target/
-        fi
+      echo "add-jacoco ${dir}"
+      cp jacocoagent.jar "${dir}"/
+#        if [[ -n $(ls "$dir" | grep -i Dockerfile) ]]; then
+#            echo "add-jacoco ${dir}"
+#            cp jacocoagent.jar "${dir}"/
+#        fi
     fi
 done
