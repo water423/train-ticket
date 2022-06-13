@@ -16,7 +16,7 @@ package:
 	@mvn clean package -DskipTests
 
 .PHONY: add-jacoco
-build-image:
+add-jacoco:
 	@hack/add-jacoco.sh
 
 .PHONY: build-image
