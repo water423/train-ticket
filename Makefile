@@ -1,7 +1,7 @@
 # Codewisdom Train-Ticket system
 
-Repo=codewisdom
-Tag=latest
+Repo=cqqcqq
+Tag=jacoco
 
 # build image
 .PHONY: build
