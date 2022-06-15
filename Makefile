@@ -7,9 +7,9 @@ Tag=jacoco
 .PHONY: build
 build: clean-image package build-image
 
-.PHONY: build-image
-build-image:
-	@hack/build-image.sh
+#.PHONY: build-image
+#build-image:
+#	@hack/build-image.sh
 
 .PHONY: package
 package:
