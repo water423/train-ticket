@@ -15,7 +15,7 @@ spec:
       containers:
         - name: ts-ui-dashboard
           image: codewisdom/ts-ui-dashboard:0.2.1
-#          command: ["/bin/bash", "-ce", "tail -f /dev/null"]
+          command: ["/bin/bash", "-ce", "tail -f /dev/null"]
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
